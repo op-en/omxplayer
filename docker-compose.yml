@@ -1,0 +1,13 @@
+mosquitto:
+  image: openenergy/rpi-mosquitto
+  ports:
+    - "1883:1883"
+omxplayer:
+  image: omxplayer
+  links:
+    - mosquitto:mqtt
+  volumes:
+    - "/opt/vc:/opt/vc"
+  devices:
+    - "/dev/vchiq:/dev/vchiq"
+    - "/dev/fb0:/dev/fb0"
